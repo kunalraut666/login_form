@@ -1,11 +1,11 @@
-# Welcome, Ashish! 👋
+# Welcome, Sireesha! 👋
 
 Please follow the setup instructions listed in the `Kunal` branch.  
 
 ⚠ **Important:**  
 - Make sure to read and follow the steps carefully.  
 - **DO NOT** push any code directly to the `main` branch.  
-- Commit and push only to `Ashish`.  
+- Commit and push only to `Sireesha`.  
 
 Once you're done, create a **Pull Request (PR)** for review.  
 
