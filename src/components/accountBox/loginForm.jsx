@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   BoldLink,
   BoxContainer,
@@ -9,22 +9,60 @@ import {
   SubmitButton,
 } from "./common";
 import { Marginer } from "../marginer";
-import { AccountContext } from './accountContext';
+import { AccountContext } from "./accountContext";
+import { useNavigate } from "react-router";
 
 export function LoginForm(props) {
-
   const { switchToSignup } = useContext(AccountContext);
+
+  const [email, setEmail] = useState();
+  const [password, setpassword] = useState();
+  let navigate = useNavigate();
+
+  const submitHandle = async (e) => {
+    e.preventDefault();
+
+    try {
+
+      const response = await fetch("http://127.0.0.1:8000/login", {
+          method: "POST",
+          headers: {
+              "Content-Type" : "application/json",
+          },
+          body: JSON.stringify({email, password})
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Login success
+        console.log("Login successful:", data);
+        // Optionally store token in localStorage and redirect user
+        localStorage.setItem("token", data.token);
+        navigate("/dashboard", {
+          state: {"fullName": data.full_name}
+        })
+        
+      } else {
+        // Login failed
+        alert(data.message || "Login failed");
+      }
+      
+    } catch (error) {
+        console.error(error)
+    }
+  }
 
   return (
     <BoxContainer>
       <FormContainer>
-        <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Password" />
+        <Input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <Input type="password" placeholder="Password" value={password} onChange={(e) => setpassword(e.target.value)} />
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
       <MutedLink href="#">Forget your password?</MutedLink>
       <Marginer direction="vertical" margin="1.6em" />
-      <SubmitButton type="submit">Signin</SubmitButton>
+      <SubmitButton type="submit" onClick={submitHandle}>Signin</SubmitButton>
       <Marginer direction="vertical" margin="5px" />
       <LineText>
         Don't have an accoun?{" "}
