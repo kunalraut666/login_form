@@ -24,7 +24,7 @@ export function LoginForm(props) {
 
     try {
       const baseUrl = process.env.REACT_APP_BACKEND_URL;
-      const response = await fetch(`${baseUrl}/login`, {
+      const response = await fetch(`${baseUrl}/api/login`, {
           method: "POST",
           headers: {
               "Content-Type" : "application/json",

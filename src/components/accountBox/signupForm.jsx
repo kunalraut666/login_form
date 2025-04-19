@@ -32,7 +32,7 @@ export function SignupForm(props) {
           return;
         }
 
-        const response = await fetch(`${baseUrl}/register`, {
+        const response = await fetch(`${baseUrl}/api/register`, {
           method: "POST",
           headers: {
               "Content-Type" : "application/json",
