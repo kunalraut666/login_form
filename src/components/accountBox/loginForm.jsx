@@ -23,8 +23,8 @@ export function LoginForm(props) {
     e.preventDefault();
 
     try {
-
-      const response = await fetch("http://127.0.0.1:8000/login", {
+      const baseUrl = process.env.REACT_APP_BACKEND_URL;
+      const response = await fetch(`${baseUrl}/login`, {
           method: "POST",
           headers: {
               "Content-Type" : "application/json",

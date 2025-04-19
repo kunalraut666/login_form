@@ -25,13 +25,14 @@ export function SignupForm(props) {
     e.preventDefault();
 
     try {
+      const baseUrl = process.env.REACT_APP_BACKEND_URL;
 
         if (cnf_password !== password) {
           alert("Passwords do not match");
           return;
         }
 
-        const response = await fetch("http://127.0.0.1:8000/register", {
+        const response = await fetch(`${baseUrl}/register`, {
           method: "POST",
           headers: {
               "Content-Type" : "application/json",
