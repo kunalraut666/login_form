@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AccountBox from "./components/accountBox/index";
 import Dashboard from "./components/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AppContainer = styled.div`
   width: 100%;
@@ -20,6 +21,7 @@ export default function App() {
   return (
     <Router>
       <AppContainer>
+      <ToastContainer />
         <Routes>
           <Route path="/" element={<AccountBox />} />
           <Route path="/dashboard" element={
