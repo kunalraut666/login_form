@@ -59,7 +59,7 @@ export function SignupForm(props) {
           switchToSignin(); // switch to login form
         }, 2000);
       } else {
-        toast.error(data.message || "Registration failed!");
+        toast.error(data.detail || "Registration failed!");
         setLoading(false);
       }
     } catch (error) {
